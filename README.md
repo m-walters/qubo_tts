@@ -50,14 +50,18 @@ The appropriate conjugate prior for our parameter $\theta$ is the Jeffreys prior
 $\alpha = \beta = 1/2$. The $\beta$ prior is the conjugate for binomial distributions, and the Jeffreys hyperparameters
 are selected to make no assumptions about $\theta$.
 
-For a given MC algorithm, interaction coupling, and system size $N$, the group prepared and simulated $I=\{1, 2, ..., 100}\$ initial states.
-Each initial state was then run $r$ number of times, yielding $y$ successes.
+For a given MC algorithm, interaction coupling, and system size $N$, the group prepared and simulated $I=\{1, 2, ...,
+100}\$ initial states, also referred to as "instances".
+Each instance was then run $r$ number of times, yielding $y$ successes.
 This set of $I$ batches of runs, is resampled with replacement using bootstrapping.
 The Bayesian inference algorithm then proceeds as follows:
 
 1. For $B=5000$ bootstrapping iterations, sample from $I$ with replacement
-2. A sample, $i$, has a tuple $(r_i, y_i)$ which is used to update our beta prior as $\text{Beta}(\alpha, \beta) \mapsto \text{Beta}(\alpha + y_i, \beta + r_i - y_i)$.
+2. An instance, $i$, has a tuple $(r_i, y_i)$ which is used to update our beta prior as $\text{Beta}(\alpha, \beta) 
+   \mapsto \text{Beta}(\alpha + y_i, \beta + r_i - y_i)$.
 3. We sample an estimate of $\theta$ from this posterior distribution and record this instance of $R_{99,bi}$ (for bootstrap iter $b$).
 4. After collecting the set of $R_{99,b}$ values for this bootstrap iter, find the $q$-th percentile and store as $R_{99,bq}$ (of course this is different than $R_{99,bi}$ above).
 5. After all bootstrap iterations are complete, we consider the empirical distribution $(\tau R_{99,1q}, ..., \tau R_{99,Bq})$ as an approximation of the true $TTS_q$ distribution.
 
+Note that the values for $r$ for a given algorithm were provided in the Appendix, as $r_{DA} = 100$, $r_{SA}=100$, 
+$r_{PT-ICM}=30$, and $r_{PTDA}=30$.
