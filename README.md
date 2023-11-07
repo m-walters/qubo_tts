@@ -63,5 +63,12 @@ The Bayesian inference algorithm then proceeds as follows:
 4. After collecting the set of $R_{99,b}$ values for this bootstrap iter, find the $q$-th percentile and store as $R_{99,bq}$ (of course this is different than $R_{99,bi}$ above).
 5. After all bootstrap iterations are complete, we consider the empirical distribution $(\tau R_{99,1q}, ..., \tau R_{99,Bq})$ as an approximation of the true $TTS_q$ distribution.
 
-Note that the values for $r$ for a given algorithm were provided in the Appendix, as $r_{DA} = 100$, $r_{SA}=100$, 
-$r_{PT-ICM}=30$, and $r_{PTDA}=30$.
+### Benchmarking
+
+To test our inference algorithm, we put aside the context of Ising simulations and devices and focus on how our algorithm
+estimates approach the known values of $\theta$. A given system is characterized by the three hyperparameters $\theta$, $R_{99}$, and $\tau$.
+However, $\tau$ is superfluous in the context of this study, so we set it to 1.
+In our trials then, we choose a $\theta$ and calculate $R_{99}$ using the logarithmic equation above.
+
+Three investigations are performed where our estimations of known $R_{99}$ values (derived from known $\theta$ values) are evaluated
+while varying three parameters independently: $\theta$, $N$, and $B$.
